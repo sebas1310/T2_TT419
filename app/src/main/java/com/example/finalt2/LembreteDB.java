@@ -2,9 +2,15 @@ package com.example.finalt2;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.SimpleDateFormat;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class LembreteDB extends SQLiteOpenHelper {
     public static final String TAG = "sql";
@@ -57,17 +63,16 @@ public class LembreteDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();//abre a conexão com o banco de dados
         try{
 
-            //cria a variável que aponta para o objeto ContentValues()  e que representa o conteudo do registro a ser alterado ou criado
-            //em um formato que o banco de dados entende.
             ContentValues valores = new ContentValues();
-            //transfere os valores das variáveis de instancia do objeto para a variável valor na forma (chave, valor)
+
+            Log.d("hola sebas", "titulo: " + lembrete.getTitle());
+
             valores.put(COLUNA1,lembrete.getTitle());
             valores.put(COLUNA2, lembrete.getDescription());
             valores.put(COLUNA3, lembrete.getDate());
             valores.put(COLUNA4, lembrete.getValid());
             if(id!=0){//se já existe este contato e queremos simplesmente atualizá-lo
-                // String _id = String.valueOf(id);
-                //String[] whereArgs = new String[]{_id};
+
                 int count = db.update(TABLE_NAME, valores, "_id =?",new String[]{String.valueOf(id)});
                 return count; // retorna o numero de linhas alteradas.
 
@@ -81,5 +86,82 @@ public class LembreteDB extends SQLiteOpenHelper {
             db.close();//fecha a conexão
         }
     }
+
+
+
+    public ArrayList<Lembrete> findAll() {
+        SQLiteDatabase db = getWritableDatabase();
+        //Declarando o ArrayList de objetos do tipo Contato.
+        ArrayList<Lembrete> lista = new ArrayList<>();
+        try {
+
+            Cursor c = db.query(TABLE_NAME, null, null, null, null, null, null);
+            if (c.moveToFirst()) {//move o cursor para o primeiro registro
+
+                do {
+                    int id = c.getInt(c.getColumnIndexOrThrow("_id"));
+                    String title = c.getString(c.getColumnIndexOrThrow("title"));
+                    String description = c.getString(c.getColumnIndexOrThrow("description"));
+                    String date = c.getString(c.getColumnIndexOrThrow("date"));
+                    int valid = c.getInt(c.getColumnIndexOrThrow("valid"));
+
+                    Lembrete currentLembrete = new Lembrete(id, title, description,date,valid);
+                    lista.add(currentLembrete);
+
+                } while (c.moveToNext());//move para a próxima posição
+
+            }
+            return lista;//retorna o Array contendo os contatos
+        } finally {
+            db.close();//fecha a conexão
+        }
+    }
+
+
+    public ArrayList<Lembrete> findTodayReminders() {
+        SQLiteDatabase db = getWritableDatabase();
+        ArrayList<Lembrete> lista = new ArrayList<>();
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            String todayDate = dateFormat.format(new Date()); // Obtiene la fecha actual en el formato "DD/MM/AAAA"
+
+            // Condiciones de la consulta para seleccionar lembretes con la fecha de hoy
+            String selection = "date = ?";
+            String[] selectionArgs = {todayDate};
+
+            Cursor c = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+            if (c.moveToFirst()) {
+                do {
+                    int id = c.getInt(c.getColumnIndexOrThrow("_id"));
+                    String title = c.getString(c.getColumnIndexOrThrow("title"));
+                    String description = c.getString(c.getColumnIndexOrThrow("description"));
+                    String date = c.getString(c.getColumnIndexOrThrow("date"));
+                    int valid = c.getInt(c.getColumnIndexOrThrow("valid"));
+
+                    Lembrete currentLembrete = new Lembrete(id, title, description, date, valid);
+                    lista.add(currentLembrete);
+                } while (c.moveToNext());
+            }
+            return lista;
+        } finally {
+            db.close();
+        }
+    }
+
+
+
+    public int apagarLembretes() {
+        SQLiteDatabase db = getWritableDatabase(); // Abre la conexión con la base de datos
+        try {
+            int count = db.delete(TABLE_NAME, null, null); // Elimina todos los registros
+            Log.i(TAG, "Todos los registros eliminados =>" + count);
+            return count; // Retorna el número de registros eliminados
+        } finally {
+            db.close(); // Cierra la conexión
+        }
+    }
+
+
 
 }

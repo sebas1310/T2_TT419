@@ -10,6 +10,12 @@ public class Lembrete {
     private int valid;
 
     public Lembrete(int _id, String titulo, String desc, String date, int valid) {
+        this._id = _id;
+        this.title = titulo;
+        this.description = desc;
+        this.date = date;
+        this.valid = valid;
+
     }
 
     public String getTitle() {
@@ -50,5 +56,14 @@ public class Lembrete {
 
     public void setValid(int valid) {
         this.valid = valid;
+    }
+
+    @Override
+    public String toString() {
+        return  "\n"+ "Titulo :"+title+ "\n"+
+                "Descripcion :"+description+"\n"+
+                "Data: "+date+"\n";
+
+
     }
 }

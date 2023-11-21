@@ -3,6 +3,7 @@ package com.example.finalt2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,10 +29,13 @@ public class NewReminder extends AppCompatActivity {
 
         db = new LembreteDB(this);
 
+
         btnSalvar = findViewById(R.id.saveXML);
-        description =  findViewById(R.id.descripcionXML);
-        data = findViewById(R.id.dateXML);
         title = findViewById(R.id.tituloXML);
+        description = findViewById(R.id.descripcionXML);
+        data = findViewById(R.id.dateXML);
+
+
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -46,9 +50,8 @@ public class NewReminder extends AppCompatActivity {
                     String desc = description.getText().toString();
                     String date = data.getText().toString();
                     int valid = 1;
-                    //cria um novo objeto da classe cadastro com as informações para serem inseridas na tabela do banco dados
                     Lembrete lembreteCreated = new Lembrete(0, titulo, desc, date,valid);
-                    // chama o método salavaContato do ContatosDB para a inserção na tabela
+
                     long id = db.saveReminder(lembreteCreated);
                     if (id != -1)
                         Toast.makeText(NewReminder.this, "cadastro realizado!", Toast.LENGTH_LONG).show();
@@ -58,7 +61,7 @@ public class NewReminder extends AppCompatActivity {
                     //limpa as caixa de texto para um novo cadastro.
                     title.setText("");
                     description.setText("");
-                    title.setText("");
+                    data.setText("");
                 }
             }
         });
