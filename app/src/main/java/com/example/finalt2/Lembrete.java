@@ -60,8 +60,8 @@ public class Lembrete {
 
     @Override
     public String toString() {
-        return  "\n"+ "Titulo :"+title+ "\n"+
-                "Descripcion :"+description+"\n"+
+        return  "\n"+ "Nome :"+title+ "\n"+
+                "Descrição :"+description+"\n"+
                 "Data: "+date+"\n";
 
 

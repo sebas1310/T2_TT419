@@ -9,15 +9,17 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0475CF"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#0AB6D1" />
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:title="To do List"
+            app:titleCentered="true"
+            app:menu="@menu/menu_main"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

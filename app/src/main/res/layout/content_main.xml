@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#070707"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -14,15 +15,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Bemvindo ao To do list app"
+        android:text="Lembretes app"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp" />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerColor="@color/white" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -32,6 +38,8 @@
 
             <Button
                 android:id="@+id/listHoyXML"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                app:icon="@drawable/baseline_view_day_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,6 +47,8 @@
 
             <Button
                 android:id="@+id/allListXML"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                app:icon="@drawable/baseline_list_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -47,12 +57,50 @@
 
         <Button
             android:id="@+id/newXML"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:text="Agregrar" />
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
+            android:text="Agregrar"
+            app:icon="@drawable/baseline_add_circle_24" />
+
 
     </LinearLayout>
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerColor="@color/white" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Jornais"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerColor="@color/white" />
+
+
+
+        <ListView
+            android:id="@+id/jornaSPViewlXML"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/black"
+            android:backgroundTint="@color/white" />
+
 
 </LinearLayout>

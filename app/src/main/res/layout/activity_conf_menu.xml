@@ -18,24 +18,22 @@
         android:textAlignment="center"
         android:text="Settings" />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerColor="@color/white" />
+
     <Button
-        android:layout_marginTop="20dp"
         android:id="@+id/apagarLembretesXML"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete all reminders"/>
-
-    <Button
-        android:id="@+id/button2"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:backgroundTint="#EC0000"
+        android:text="Delete all reminders"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        app:icon="@drawable/baseline_delete_24" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 </LinearLayout>

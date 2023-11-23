@@ -29,12 +29,11 @@ public class allReminders extends AppCompatActivity {
         db = new LembreteDB(this);
 
         allList = (ListView) findViewById(R.id.allRemindersXML);
-        //chama o método findAll que devolve um array e guarda em exibeLista
+
         showList = db.findAll();
-        //criação de uma instância de um ListAdapter utilizando um layout nativo
+
         adapter = new ArrayAdapter<Lembrete>(this, android.R.layout.simple_list_item_1, showList);
 
-        //associação a ListView com o adapter
         allList.setAdapter(adapter);
 
 

@@ -13,16 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="29dp"
-        android:text="To do"
+        android:text="Todos os lembretes"
         android:layout_gravity="center"
         android:textColor="@color/white"/>
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerColor="@color/white" />
 
     <ListView
         android:id="@+id/allRemindersXML"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:background="#090909"
-        android:backgroundTint="#00BCD4"
-        android:cacheColorHint="#B11111" />
+        android:layout_marginTop="5dp"
+        android:background="@color/black"
+        android:backgroundTint="@color/white"
+        />
+
 </LinearLayout>
